@@ -1,0 +1,34 @@
+@startuml Counter_Class_Diagram
+
+package Cubit {
+  class CounterCubit <<Cubit>> {
+    +increment()
+    +decrement()
+  }
+}
+
+package "User Interface" {
+  class CounterView <<StatelessWidget>>
+  class CounterPage <<StatelessWidget>>
+  CounterView --* CounterPage
+}
+
+package main() {
+  class CounterApp << MaterialApp >> {
+
+  }
+  class CounterObserver << BlockObserver >> {
+    -onChange()
+  }
+  class BlocOverrides {
+    runZoned(CounterApp(), CounterObserver())
+  }
+  CounterApp -- BlocOverrides
+  CounterObserver -- BlocOverrides
+}
+
+CounterApp *-- CounterPage
+CounterPage *-- CounterCubit
+CounterView o-- CounterCubit
+
+@enduml

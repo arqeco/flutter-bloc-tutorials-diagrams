@@ -1,0 +1,69 @@
+@startuml Counter_Activity_Diagram
+
+start
+
+partition CounterApp {
+  :Create CounterPage widget;
+}
+
+partition CounterPage {
+  partition "build(context)" {
+    partition BlocProvider {
+      :Create CounterCubit;
+      note right
+        state = 0
+      end note
+      :Create CounterView widget;
+    }
+  }
+}
+
+partition CounterView {
+
+  partition "build(context)" {
+    split
+      :Show AppBar;
+        partition "BlocBuilder<CounterCubit, int>" {
+          (A)
+          if (State emitted?) then (true)
+              :Show text **$state**;
+          else
+            (A)
+            detach
+          endif
+          (A)
+          detach
+        }
+    split again
+      partition "FloatingActionButton" {
+        :Show **+** button;
+        :Show **-** button;
+        (B)
+        if ("**+** button pressed?") then (true)
+          #lightblue:(I)
+        endif
+        if ("**-** button pressed?") then (true)
+          #lightblue:(D)
+        endif
+        (B)
+        detach
+      }
+    end split
+  }
+}
+detach
+
+partition CounterCubit {
+  split
+    -[hidden]->
+    #lightblue:(I)
+    #salmon:emit (state + 1);
+  split again
+    -[hidden]->
+    #lightblue:(D)
+    #salmon:emit (state - 1);
+  end split
+    (B)
+}
+
+@enduml

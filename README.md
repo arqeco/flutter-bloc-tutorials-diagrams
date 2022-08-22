@@ -1,8 +1,11 @@
-# flutter-bloc-tutorials-diagrams
-UML diagrams for Flutter Bloc library tutorials
+# Flutter Bloc Tutorials UML Diagrams
 
 The goal of this repo is to create UML diagrams that help beginners to understand the Flutter Bloc library tutorials.
 
-Estudos dos tutoriais que fazem parte do repositório do Bloc em https://github.com/felangel/bloc.
+- [Bloc Library Website](https://bloclibrary.dev/#/)
 
-Os diagramas a seguir podem ser visualizados com o uso da extensão _Markdown Preview Enhancer_ do Visual Studio Code. https://shd101wyy.github.io/markdown-preview-enhanced/ . O Markdown Preview Enhancer usa o PlantUML para renderizar os diagramas de estado https://plantuml.com/.
+Each folder here have an README file that displays the UML diagrams for one tutorial, and have the diagrams source files.
+
+The UML diagrams were created using the [Jebbs PlantUML](https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml) VS Code extension.
+
+To save the diagrams images search for PlantUML on the VS Code Command Pallete (Ctrl+Shift+P), choose "PlantUML: Export Workspace Diagrams", and then choose "png". The files will be saved on the "out" folder.
